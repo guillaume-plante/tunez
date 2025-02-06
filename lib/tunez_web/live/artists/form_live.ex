@@ -1,11 +1,11 @@
 defmodule TunezWeb.Artists.FormLive do
-  alias Tunez.Music.Artist
+  alias Tunez.Music
   use TunezWeb, :live_view
 
   def mount(%{"id" => artist_id}, _session, socket) do
     form =
-      get_artist_by_id!(artist_id)
-      |> form_to_update_artist()
+      Music.get_artist_by_id!(artist_id)
+      |> Music.form_to_update_artist()
 
     socket =
       socket
@@ -16,7 +16,7 @@ defmodule TunezWeb.Artists.FormLive do
   end
 
   def mount(_params, _session, socket) do
-    form = form_to_create_artist()
+    form = Music.form_to_create_artist()
 
     socket =
       socket
